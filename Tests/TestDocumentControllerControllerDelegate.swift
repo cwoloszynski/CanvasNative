@@ -18,16 +18,16 @@ final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 	var blocks = [BlockNode]()
 	var presentationString: NSMutableString = ""
 
-	var willUpdate: (Void -> Void)?
+	var willUpdate: ((Void) -> Void)?
 	var didInsert: ((BlockNode, Int) -> Void)?
 	var didRemove: ((BlockNode, Int) -> Void)?
-	var didUpdate: (Void -> Void)?
+	var didUpdate: ((Void) -> Void)?
 
 	var blockTypes: [String] {
-		return blocks.map { String($0.dynamicType) }
+		return blocks.map { String(describing: type(of: $0)) }
 	}
 
-	var blockDictionaries: [[String: AnyObject]] {
+	var blockDictionaries: [[String: Any]] {
 		// Note that we're checking what the delegate thinks the blocks are. This makes sure all of the delegate
 		// messages fire in the right order. If they didn't, this would be wrong and the test would fail. Yay.
 		return blocks.map { $0.dictionary }
@@ -36,25 +36,25 @@ final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 
 	// MARK: - ControllerDelegate
 
-	func documentControllerWillUpdateDocument(controller: DocumentController) {
+	func documentControllerWillUpdateDocument(_ controller: DocumentController) {
 		willUpdate?()
 	}
 
-	func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
-		presentationString.replaceCharactersInRange(range, withString: string)
+	func documentController(_ controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+		presentationString.replaceCharacters(in: range, with: string)
 	}
 
-	func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
-		blocks.insert(block, atIndex: index)
+	func documentController(_ controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
+		blocks.insert(block, at: index)
 		didInsert?(block, index)
 	}
 
-	func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
-		blocks.removeAtIndex(index)
+	func documentController(_ controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
+		blocks.remove(at: index)
 		didRemove?(block, index)
 	}
 
-	func documentControllerDidUpdateDocument(controller: DocumentController) {
+	func documentControllerDidUpdateDocument(_ controller: DocumentController) {
 		didUpdate?()
 	}
 }

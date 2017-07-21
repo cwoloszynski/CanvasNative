@@ -22,8 +22,11 @@ final class DocumentTests: XCTestCase {
 	}
 
 	func testBlockAt() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\n")
-		XCTAssert(document.blockAt(presentationLocation: 5) is Paragraph)
+		let document = Document(backingString: "⧙doc-heading⧘Title\nHello")
+		let titleBlock = document.blockAt(presentationLocation: 5)
+		let bodyBlock = document.blockAt(presentationLocation: 10)
+		XCTAssert(titleBlock is Title)
+		XCTAssert(bodyBlock is Paragraph)
 	}
 
 	func testBackingRangeToPresentationRange() {

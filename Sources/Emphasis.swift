@@ -31,9 +31,9 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 		]
 	}
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
-			"type": "emphasis",
+			"type": "emphasis" as NSObject,
 			"range": range.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
@@ -58,7 +58,7 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta
 		textRange.location += delta
 		trailingDelimiterRange.location += delta
@@ -80,9 +80,9 @@ extension Emphasis: SpanNodeParseable {
 			return nil
 		}
 
-		leadingDelimiterRange = match.rangeAtIndex(1)
-		textRange = match.rangeAtIndex(2)
-		trailingDelimiterRange = match.rangeAtIndex(3)
+		leadingDelimiterRange = match.rangeAt(1)
+		textRange = match.rangeAt(2)
+		trailingDelimiterRange = match.rangeAt(3)
 	}
 }
 

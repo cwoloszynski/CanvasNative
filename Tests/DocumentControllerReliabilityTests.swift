@@ -21,11 +21,11 @@ final class DocumentControllerReliabilityTests: XCTestCase {
 	func testReliabilityInsertMidParagraph() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "1")
-		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
 
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "2")
-		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
 	}
 }

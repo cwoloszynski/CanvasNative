@@ -31,7 +31,7 @@ public struct DoubleEmphasis: SpanNode, Foldable, NodeContainer {
 		]
 	}
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "double-emphasis",
 			"range": range.dictionary,
@@ -58,7 +58,7 @@ public struct DoubleEmphasis: SpanNode, Foldable, NodeContainer {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta
 		textRange.location += delta
 		trailingDelimiterRange.location += delta
@@ -80,9 +80,9 @@ extension DoubleEmphasis: SpanNodeParseable {
 			return nil
 		}
 
-		leadingDelimiterRange = match.rangeAtIndex(1)
-		textRange = match.rangeAtIndex(2)
-		trailingDelimiterRange = match.rangeAtIndex(3)
+		leadingDelimiterRange = match.rangeAt(1)
+		textRange = match.rangeAt(2)
+		trailingDelimiterRange = match.rangeAt(3)
 	}
 }
 
