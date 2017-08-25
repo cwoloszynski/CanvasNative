@@ -132,7 +132,6 @@
 		217309F71D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
 		217309F81D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
 		2175D43D1D1729EC009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43B1D1729E4009C6845 /* Diff.framework */; };
-		2175D43F1D172A03009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43E1D172A03009C6845 /* Diff.framework */; };
 		2175D4411D172A0D009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4401D172A0D009C6845 /* Diff.framework */; };
 		2175D4431D172A18009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4421D172A18009C6845 /* Diff.framework */; };
 		21A9F0D21C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift */; };
@@ -252,6 +251,7 @@
 		21E8EBCC1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
 		21E8EBCD1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
 		21E8EBCE1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
+		CB453C261F501A88008F4B27 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB453C171F501A6A008F4B27 /* Diff.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +275,62 @@
 			proxyType = 1;
 			remoteGlobalIDString = 21632D151C92366600C40D7D;
 			remoteInfo = CanvasNative;
+		};
+		CB453C161F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3A51D17267D009C6845;
+			remoteInfo = "Diff-iOS";
+		};
+		CB453C181F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3AF1D17267D009C6845;
+			remoteInfo = "DiffTests-iOS";
+		};
+		CB453C1A1F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3C41D17268C009C6845;
+			remoteInfo = "Diff-macOS";
+		};
+		CB453C1C1F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3CD1D17268C009C6845;
+			remoteInfo = "DiffTests-macOS";
+		};
+		CB453C1E1F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3E01D17269D009C6845;
+			remoteInfo = "Diff-watchOS";
+		};
+		CB453C201F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3ED1D1726A8009C6845;
+			remoteInfo = "Diff-tvOS";
+		};
+		CB453C221F501A6A008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2175D3F61D1726A8009C6845;
+			remoteInfo = "DiffTests-tvOS";
+		};
+		CB453C241F501A76008F4B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2175D3A41D17267D009C6845;
+			remoteInfo = "Diff-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -392,6 +448,7 @@
 		21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerInsertTests.swift; sourceTree = "<group>"; };
 		21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerRemoveTests.swift; sourceTree = "<group>"; };
 		21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoncontiguousRange.swift; sourceTree = "<group>"; };
+		CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Diff.xcodeproj; path = ../Diff/Diff.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,7 +456,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2175D43F1D172A03009C6845 /* Diff.framework in Frameworks */,
+				CB453C261F501A88008F4B27 /* Diff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +580,7 @@
 				215BAB8E1C52B28900118C8C /* Tests */,
 				2175D4361D1729BE009C6845 /* Frameworks */,
 				215BAB2E1C52B0C400118C8C /* Products */,
+				CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -730,6 +788,20 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		CB453C0D1F501A69008F4B27 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB453C171F501A6A008F4B27 /* Diff.framework */,
+				CB453C191F501A6A008F4B27 /* DiffTests.xctest */,
+				CB453C1B1F501A6A008F4B27 /* Diff.framework */,
+				CB453C1D1F501A6A008F4B27 /* DiffTests.xctest */,
+				CB453C1F1F501A6A008F4B27 /* Diff.framework */,
+				CB453C211F501A6A008F4B27 /* Diff.framework */,
+				CB453C231F501A6A008F4B27 /* DiffTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -781,6 +853,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CB453C251F501A76008F4B27 /* PBXTargetDependency */,
 			);
 			name = "CanvasNative-iOS";
 			productName = CanvasNative;
@@ -944,6 +1017,12 @@
 			mainGroup = 215BAB231C52B0C400118C8C;
 			productRefGroup = 215BAB2E1C52B0C400118C8C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CB453C0D1F501A69008F4B27 /* Products */;
+					ProjectRef = CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				215BAB2C1C52B0C400118C8C /* CanvasNative-iOS */,
@@ -956,6 +1035,58 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CB453C171F501A6A008F4B27 /* Diff.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Diff.framework;
+			remoteRef = CB453C161F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB453C191F501A6A008F4B27 /* DiffTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DiffTests.xctest;
+			remoteRef = CB453C181F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB453C1B1F501A6A008F4B27 /* Diff.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Diff.framework;
+			remoteRef = CB453C1A1F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB453C1D1F501A6A008F4B27 /* DiffTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DiffTests.xctest;
+			remoteRef = CB453C1C1F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB453C1F1F501A6A008F4B27 /* Diff.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Diff.framework;
+			remoteRef = CB453C1E1F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB453C211F501A6A008F4B27 /* Diff.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Diff.framework;
+			remoteRef = CB453C201F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB453C231F501A6A008F4B27 /* DiffTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DiffTests.xctest;
+			remoteRef = CB453C221F501A6A008F4B27 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		215BAB2B1C52B0C400118C8C /* Resources */ = {
@@ -1339,6 +1470,11 @@
 			target = 21632D151C92366600C40D7D /* CanvasNative-tvOS */;
 			targetProxy = 21632D211C92366700C40D7D /* PBXContainerItemProxy */;
 		};
+		CB453C251F501A76008F4B27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Diff-iOS";
+			targetProxy = CB453C241F501A76008F4B27 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1447,10 +1583,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1471,10 +1604,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
