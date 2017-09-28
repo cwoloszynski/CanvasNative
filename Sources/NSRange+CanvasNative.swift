@@ -75,7 +75,8 @@ extension NSRange {
 	/// - parameter range: The range to check for intersection with the receiver.
 	/// - return: The length of intersection if they intersect or nil if they don't.
 	
-	func intersection(_ range: NSRange) -> Int? {
+	
+	func intersectionLength(_ range: NSRange) -> Int? {
 		if range.length == 0 {
 			return NSLocationInRange(range.location, self) ? 0 : nil
 		}

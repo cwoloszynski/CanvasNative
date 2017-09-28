@@ -70,8 +70,8 @@ extension CodeSpan: SpanNodeParseable {
 			return nil
 		}
 
-		leadingDelimiterRange = match.rangeAt(1)
-		textRange = match.rangeAt(2)
-		trailingDelimiterRange = match.rangeAt(3)
+		leadingDelimiterRange = match.range(at:1)
+		textRange = match.range(at:2)
+		trailingDelimiterRange = match.range(at:3)
 	}
 }

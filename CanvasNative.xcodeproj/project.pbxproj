@@ -131,9 +131,6 @@
 		217309F61D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
 		217309F71D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
 		217309F81D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
-		2175D43D1D1729EC009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43B1D1729E4009C6845 /* Diff.framework */; };
-		2175D4411D172A0D009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4401D172A0D009C6845 /* Diff.framework */; };
-		2175D4431D172A18009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4421D172A18009C6845 /* Diff.framework */; };
 		21A9F0D21C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift */; };
 		21A9F0D31C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
@@ -233,9 +230,6 @@
 		21CB79A01D09E776002F4830 /* PlainRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB799F1D09E776002F4830 /* PlainRendererTests.swift */; };
 		21CB79A11D09E776002F4830 /* PlainRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB799F1D09E776002F4830 /* PlainRendererTests.swift */; };
 		21CB79A21D09E776002F4830 /* PlainRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB799F1D09E776002F4830 /* PlainRendererTests.swift */; };
-		21D70CE41D186DF000DF4E9B /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43B1D1729E4009C6845 /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		21D70CE51D186DFA00DF4E9B /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4421D172A18009C6845 /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		21D70CFE1D186FB200DF4E9B /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43E1D172A03009C6845 /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21D70D301D188B5700DF4E9B /* DocumentInlineMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D70D2F1D188B5700DF4E9B /* DocumentInlineMarkerTests.swift */; };
 		21D70D311D188B5700DF4E9B /* DocumentInlineMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D70D2F1D188B5700DF4E9B /* DocumentInlineMarkerTests.swift */; };
 		21D70D321D188B5700DF4E9B /* DocumentInlineMarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D70D2F1D188B5700DF4E9B /* DocumentInlineMarkerTests.swift */; };
@@ -341,7 +335,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				21D70CE51D186DFA00DF4E9B /* Diff.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,7 +345,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				21D70CE41D186DF000DF4E9B /* Diff.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,7 +355,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				21D70CFE1D186FB200DF4E9B /* Diff.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,10 +385,6 @@
 		21673D711CBD94980017190B /* Document+Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+Change.swift"; sourceTree = "<group>"; };
 		217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
 		217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownRendererTests.swift; sourceTree = "<group>"; };
-		2175D43B1D1729E4009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/Mac/Diff.framework; sourceTree = "<group>"; };
-		2175D43E1D172A03009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
-		2175D4401D172A0D009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/watchOS/Diff.framework; sourceTree = "<group>"; };
-		2175D4421D172A18009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/tvOS/Diff.framework; sourceTree = "<group>"; };
 		21A9F0D11C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerChangeTests.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 		21AD8C871C8A4628000A53F8 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
@@ -472,7 +459,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2175D43D1D1729EC009C6845 /* Diff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +474,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2175D4411D172A0D009C6845 /* Diff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +481,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2175D4431D172A18009C6845 /* Diff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +562,6 @@
 				21AD8C851C8A4628000A53F8 /* Sources */,
 				21AD8CA51C8A4628000A53F8 /* Support */,
 				215BAB8E1C52B28900118C8C /* Tests */,
-				2175D4361D1729BE009C6845 /* Frameworks */,
 				215BAB2E1C52B0C400118C8C /* Products */,
 				CB453C0C1F501A69008F4B27 /* Diff.xcodeproj */,
 			);
@@ -621,49 +604,6 @@
 				21AD8C8A1C8A4628000A53F8 /* DocumentController.swift */,
 			);
 			name = Document;
-			sourceTree = "<group>";
-		};
-		2175D4361D1729BE009C6845 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2175D4381D1729CB009C6845 /* macOS */,
-				2175D4371D1729C8009C6845 /* iOS */,
-				2175D4391D1729CF009C6845 /* watchOS */,
-				2175D43A1D1729D4009C6845 /* tvOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2175D4371D1729C8009C6845 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				2175D43E1D172A03009C6845 /* Diff.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		2175D4381D1729CB009C6845 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				2175D43B1D1729E4009C6845 /* Diff.framework */,
-			);
-			name = macOS;
-			sourceTree = "<group>";
-		};
-		2175D4391D1729CF009C6845 /* watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				2175D4401D172A0D009C6845 /* Diff.framework */,
-			);
-			name = watchOS;
-			sourceTree = "<group>";
-		};
-		2175D43A1D1729D4009C6845 /* tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				2175D4421D172A18009C6845 /* Diff.framework */,
-			);
-			name = tvOS;
 			sourceTree = "<group>";
 		};
 		21AD8C851C8A4628000A53F8 /* Sources */ = {
@@ -979,7 +919,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Canvas Labs, Inc.";
 				TargetAttributes = {
 					215BAB2C1C52B0C400118C8C = {
@@ -1488,14 +1428,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1538,14 +1484,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1580,7 +1532,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 936EKNL558;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1594,7 +1546,7 @@
 				PRODUCT_NAME = CanvasNative;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1603,7 +1555,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 936EKNL558;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1617,7 +1569,7 @@
 				PRODUCT_NAME = CanvasNative;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1632,7 +1584,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
 				PRODUCT_NAME = CanvasNativeTests;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1647,7 +1599,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
 				PRODUCT_NAME = CanvasNativeTests;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

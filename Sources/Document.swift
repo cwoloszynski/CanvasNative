@@ -93,7 +93,7 @@ public struct Document {
 
 			if hiddenRange.max <= backingRange.location {
 				presentationRange.location -= hiddenRange.length
-			} else if let intersection = backingRange.intersection(hiddenRange) {
+			} else if let intersection = backingRange.intersectionLength(hiddenRange) {
 				presentationRange.length -= intersection
 			}
 		}
@@ -147,7 +147,7 @@ public struct Document {
 		for pair in inlineMarkerPairs {
 
 			// Delete the entire pair if all of it is in the selection
-			if output.intersection(pair.visibleRange) == pair.visibleRange.length {
+			if output.intersectionLength(pair.visibleRange) == pair.visibleRange.length {
 				output.insert(range: pair.range)
 			} else {
 				// Remove any markers from the range
@@ -168,7 +168,7 @@ public struct Document {
 			if hiddenRange.location > backingRange.location {
 
 				// Shadow intersects. Expand length.
-				if backingRange.intersection(hiddenRange) > 0 {
+				if backingRange.intersectionLength(hiddenRange) > 0 {
 					backingRange.length += hiddenRange.length
 					continue
 				}

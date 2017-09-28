@@ -38,9 +38,9 @@ public struct LinkTitle {
 	}
 
 	init?(match: NSTextCheckingResult) {
-		leadingDelimiterRange = match.rangeAt(6)
-		textRange = match.rangeAt(7)
-		trailingDelimiterRange = match.rangeAt(8)
+		leadingDelimiterRange = match.range(at:6)
+		textRange = match.range(at:7)
+		trailingDelimiterRange = match.range(at:8)
 
 		guard leadingDelimiterRange.location != NSNotFound &&
 			textRange.location != NSNotFound &&
@@ -173,14 +173,14 @@ extension Link: SpanNodeParseable {
 			return nil
 		}
 
-		range = match.rangeAt(0)
-		leadingTextDelimiterRange = match.rangeAt(1)
-		textRange = match.rangeAt(2)
-		trailingTextDelimiterRange = match.rangeAt(3)
-		leadingUrlDelimiterRange = match.rangeAt(4)
-		urlRange = match.rangeAt(5)
+		range = match.range(at:0)
+		leadingTextDelimiterRange = match.range(at:1)
+		textRange = match.range(at:2)
+		trailingTextDelimiterRange = match.range(at:3)
+		leadingUrlDelimiterRange = match.range(at:4)
+		urlRange = match.range(at:5)
 		title = LinkTitle(match: match)
-		trailingURLDelimiterRange = match.rangeAt(9)
+		trailingURLDelimiterRange = match.range(at:9)
 	}
 }
 

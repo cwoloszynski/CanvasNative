@@ -116,11 +116,11 @@ public struct Parser {
 				// Look for matches that should be skipped because they're contained in other already parsed siblings
 				var skip = false
 				for sibling in subnodes {
-					let matchRange = match.rangeAt(0)
+					let matchRange = match.range(at:0)
 
 					// Allow links to contain code spans.
 					// This should be made more abstract down the road.
-					if type == Link.self && sibling is CodeSpan && match.rangeAt(2).equals(sibling.range) {
+					if type == Link.self && sibling is CodeSpan && match.range(at:2).equals(sibling.range) {
 						break
 					}
 
@@ -174,9 +174,9 @@ public struct Parser {
 
 		let markers: [InlineMarker] = matches.flatMap { result in
 			guard result.numberOfRanges == 5 else { return nil }
-			let id = text.substring(with: result.rangeAt(4))
-			let position: InlineMarker.Position = result.rangeAt(2).length == 0 ? .opening : .closing
-			return InlineMarker(range: result.rangeAt(0), position: position, id: id)
+			let id = text.substring(with: result.range(at:4))
+			let position: InlineMarker.Position = result.range(at:2).length == 0 ? .opening : .closing
+			return InlineMarker(range: result.range(at:0), position: position, id: id)
 		}
 
 		return InlineMarkerPair.pairs(markers: markers)

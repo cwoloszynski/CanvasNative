@@ -28,7 +28,7 @@ struct NoncontiguousRange {
 
 	// MARK: - Querying
 
-	func intersection(_ range: NSRange) -> Int? {
+	func intersectionLength(_ range: NSRange) -> Int? {
 		if range.length == 0 {
 			return storage.contains(range.location) ? 0 : nil
 		}
