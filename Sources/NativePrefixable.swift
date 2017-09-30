@@ -8,8 +8,8 @@
 
 import Foundation
 
-let leadingNativePrefix = "⧙"
-let trailingNativePrefix = "⧘"
+public let leadingNativePrefix = "⧙"
+public let trailingNativePrefix = "⧘"
 
 public protocol NativePrefixable: BlockNode {
 	var nativePrefixRange: NSRange { get }

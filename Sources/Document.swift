@@ -60,7 +60,7 @@ public struct Document {
 
 	/// The title of the document
 	public var title: String? {
-		guard let title = blocks.first as? Title else { return nil }
+		guard let title = blocks.first as? DocumentTitle else { return nil }
 
 		let titleDocument = Document(backingString: backingString, blocks: [title])
 		let renderer = PlainRenderer(document: titleDocument)

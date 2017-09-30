@@ -89,7 +89,7 @@ public struct MarkdownRenderer: Renderer {
 		}
 
 		// Title
-		else if let block = block as? Title {
+		else if let block = block as? DocumentTitle {
 			output = "# \(render(spans: block.subnodes))"
 		}
 

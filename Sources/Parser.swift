@@ -17,7 +17,7 @@ public struct Parser {
 		Blockquote.self,
 		ChecklistItem.self,
 		CodeBlock.self,
-		Title.self,
+		DocumentTitle.self,
 		Heading.self,
 		HorizontalRule.self,
 		Image.self,

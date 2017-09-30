@@ -1,5 +1,5 @@
 //
-//  Title.swift
+//  DocumentTitle.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 11/19/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equatable {
+public struct DocumentTitle: NativePrefixable, NodeContainer, InlineMarkerContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -79,7 +79,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 }
 
 
-public func ==(lhs: Title, rhs: Title) -> Bool {
+public func ==(lhs: DocumentTitle, rhs: DocumentTitle) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange)
