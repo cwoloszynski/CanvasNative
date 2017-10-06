@@ -27,7 +27,7 @@ final class DocumentControllerInsertTests: XCTestCase {
 		let insertTitle = expectation(description: "controller:didInsertBlock:atIndex: Title")
 		let insertParagraph = expectation(description: "controller:didInsertBlock:atIndex: Paragraph")
 		delegate.didInsert = { node, index in
-			if node is Title {
+			if node is DocumentTitle {
 				XCTAssertEqual(0, index)
 				insertTitle.fulfill()
 			} else if node is Paragraph {

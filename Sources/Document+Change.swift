@@ -27,63 +27,63 @@ struct DocumentChange {
 
 	// MARK: - Initializers
 
-	init(before: Document, after: Document, blockChange: BlockChange?, backingStringChange: StringChange, presentationStringChange: StringChange?) {
+	/* init(before: Document, after: Document, blockChange: BlockChange?, backingStringChange: StringChange, presentationStringChange: StringChange?) {
 		self.before = before
 		self.after = after
 		self.blockChange = blockChange
 		self.backingStringChange = backingStringChange
 		self.presentationStringChange = presentationStringChange
-	}
+	} */
 }
 
 
-extension Document {
-	func replaceCharactersInRange(_ range: NSRange, withString string: String) -> DocumentChange {
-		let before = self
 
-		// Calculate new backing string
-		let text = NSMutableString(string: before.backingString)
-		text.replaceCharacters(in: range, with: string)
-		let backingStringChange = StringChange(range: range, replacement: string as NSString)
+func replaceCharacters(inRange range: NSRange, withString string: String,  inDocument before: Document) -> (DocumentChange, Document) {
 
-		// Create new document
-		let after = Document(backingString: text as String)
+	// Calculate new backing string
+	let text = NSMutableString(string: before.backingString)
+	text.replaceCharacters(in: range, with: string)
+	let backingStringChange = StringChange(range: range, replacement: string as NSString)
 
-		// Calculate block changes
-		let blockChange = diff(before.blocks, after.blocks) { beforeBlock, afterBlock in
-			// If they are different types or have different lengths, they are definitely not equal.
-			if type(of: beforeBlock) != type(of: afterBlock) || beforeBlock.range.length != afterBlock.range.length {
-				return false
-			}
+	// Create new document
+	let after = Document.createDocument(backingString: String(text)) // Use a copy of the backing String
 
-			// Check positionable
-			if let before = beforeBlock as? Positionable, let after = afterBlock as? Positionable, before.position != after.position {
-				return false
-			}
-
-			// Check code block
-			if let before = beforeBlock as? CodeBlock, let after = afterBlock as? CodeBlock, before.lineNumber != after.lineNumber {
-				return false
-			}
-
-			// Check ordered list
-			if let before = beforeBlock as? OrderedListItem, let after = afterBlock as? OrderedListItem, before.number != after.number {
-				return false
-			}
-
-			// Compare their native representations
-			return (before.backingString as NSString).substring(with: beforeBlock.range) == (after.backingString as NSString).substring(with: afterBlock.range)
+	// Calculate block changes
+	let blockChange = diff(before.blocks, after.blocks) { beforeBlock, afterBlock in
+		// If they are different types or have different lengths, they are definitely not equal.
+		if type(of: beforeBlock) != type(of: afterBlock) || beforeBlock.range.length != afterBlock.range.length {
+			return false
 		}
 
-		// Calculate presentation change
-		let presentationStringChange = diff(before.presentationString as NSString, after.presentationString as NSString)
+		// Check positionable
+		if let before = beforeBlock as? Positionable, let after = afterBlock as? Positionable, before.position != after.position {
+			return false
+		}
 
-		return DocumentChange(
-			before: before,
-			after: after,
-			blockChange: blockChange,
-			backingStringChange: backingStringChange,
-			presentationStringChange: presentationStringChange
-		)
+		// Check code block
+		if let before = beforeBlock as? CodeBlock, let after = afterBlock as? CodeBlock, before.lineNumber != after.lineNumber {
+			return false
+		}
+
+		// Check ordered list
+		if let before = beforeBlock as? OrderedListItem, let after = afterBlock as? OrderedListItem, before.number != after.number {
+			return false
+		}
+
+		// Compare their native representations
+		return (before.backingString as NSString).substring(with: beforeBlock.range) == (after.backingString as NSString).substring(with: afterBlock.range)
 	}
+
+	// Calculate presentation change
+	let presentationStringChange = diff(before.presentationString as NSString, after.presentationString as NSString)
+
+	let change = DocumentChange(
+		before: before,
+		after: after,
+		blockChange: blockChange,
+		backingStringChange: backingStringChange,
+		presentationStringChange: presentationStringChange
+	)
+	return (change, after)
 }
+

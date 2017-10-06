@@ -18,10 +18,10 @@ final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 	var blocks = [BlockNode]()
 	var presentationString: NSMutableString = ""
 
-	var willUpdate: ((Void) -> Void)?
+	var willUpdate: (() -> Void)?
 	var didInsert: ((BlockNode, Int) -> Void)?
 	var didRemove: ((BlockNode, Int) -> Void)?
-	var didUpdate: ((Void) -> Void)?
+	var didUpdate: (() -> Void)?
 
 	var blockTypes: [String] {
 		return blocks.map { String(describing: type(of: $0)) }

@@ -636,6 +636,7 @@
 			children = (
 				21AD8C871C8A4628000A53F8 /* Attachable.swift */,
 				21AD8C881C8A4628000A53F8 /* BlockNode.swift */,
+				21AD8CA31C8A4628000A53F8 /* DocumentTitle.swift */,
 				21AD8C951C8A4628000A53F8 /* Listable.swift */,
 				21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */,
 				21B5024C1CFF5C7E0067FB9A /* InlineMarkerContainer.swift */,
@@ -649,7 +650,6 @@
 				21AD8C931C8A4628000A53F8 /* Image.swift */,
 				21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */,
 				21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */,
-				21AD8CA31C8A4628000A53F8 /* DocumentTitle.swift */,
 				21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */,
 			);
 			name = "Block Level";

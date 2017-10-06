@@ -11,26 +11,26 @@ import CanvasNative
 
 final class DocumentTests: XCTestCase {
 	func testTitle() {
-		var document = Document(backingString: "⧙doc-heading⧘Title\nHello")
+		var document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nHello")
 		XCTAssertEqual("Title", document.title)
 
-		document = Document(backingString: "⧙doc-heading⧘**Title**\nHello")
+		document = Document.createDocument(backingString: "⧙doc-heading⧘**Title**\nHello")
 		XCTAssertEqual("Title", document.title)
 
-		document = Document(backingString: "Hello")
+		document = Document.createDocument(backingString: "Hello")
 		XCTAssertNil(document.title)
 	}
 
 	func testBlockAt() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nHello")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nHello")
 		let titleBlock = document.blockAt(presentationLocation: 5)
 		let bodyBlock = document.blockAt(presentationLocation: 10)
-		XCTAssert(titleBlock is Title)
+		XCTAssert(titleBlock is DocumentTitle)
 		XCTAssert(bodyBlock is Paragraph)
 	}
 
 	func testBackingRangeToPresentationRange() {
-		var document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
+		var document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 
 		XCTAssertEqual("Title\nOne\nTwo\nThree", document.presentationString)
 		XCTAssertEqual(NSRange(location: 0, length: 5), document.presentationRange(backingRange: document.blocks[0].visibleRange))
@@ -38,22 +38,22 @@ final class DocumentTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 10, length: 3), document.presentationRange(backingRange: document.blocks[2].visibleRange))
 		XCTAssertEqual(NSRange(location: 14, length: 5), document.presentationRange(backingRange: document.blocks[3].visibleRange))
 
-		document = Document(backingString: "⧙doc-heading⧘Title\nO")
+		document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nO")
 		XCTAssertEqual("Title\nO", document.presentationString)
 		XCTAssertEqual(NSRange(location: 0, length: 5), document.presentationRange(backingRange: document.blocks[0].visibleRange))
 		XCTAssertEqual(NSRange(location: 6, length: 1), document.presentationRange(backingRange: document.blocks[1].visibleRange))
 
-		document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> One")
+		document = Document.createDocument(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> One")
 		XCTAssertEqual("Title\nOne", document.presentationString)
 		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(backingRange: document.blocks[1].visibleRange))
 
-		document = Document(backingString: "⧙doc-heading⧘Title\nC")
+		document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nC")
 		XCTAssertEqual("Title\nC", document.presentationString)
 		XCTAssertEqual(NSRange(location: 6, length: 1), document.presentationRange(backingRange: document.blocks[1].visibleRange))
 	}
 
 	func testPresentationRangeForBlock() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> One")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> One")
 		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(block: document.blocks[1]))
 		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(blockIndex: 1))
 	}
@@ -67,7 +67,7 @@ final class DocumentTests: XCTestCase {
 //	}
 
 	func testPresentationRangeToBackingRange() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 		XCTAssertEqual("Title\nOne\nTwo\nThree", document.presentationString)
 
 		XCTAssertEqual([NSRange(location: 38, length: 2)], document.backingRanges(presentationRange: NSRange(location: 11, length: 2)))
@@ -75,17 +75,17 @@ final class DocumentTests: XCTestCase {
 	}
 
 	func testEntirePresentationRange() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙image⧘http://example.com/image.jpg")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\n⧙image⧘http://example.com/image.jpg")
 		let ranges = document.backingRanges(presentationRange: NSRange(location: 6, length: 1))
 		XCTAssertEqual([NSRange(location: 19, length: 35)], ranges)
 	}
 
 	func testBlockAtPresentationLocation() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 		XCTAssertEqual("Title\nOne\nTwo", document.presentationString)
 
-		XCTAssert(document.blockAt(presentationLocation: 0)! is Title)
-		XCTAssert(document.blockAt(presentationLocation: 1)! is Title)
+		XCTAssert(document.blockAt(presentationLocation: 0)! is DocumentTitle)
+		XCTAssert(document.blockAt(presentationLocation: 1)! is DocumentTitle)
 		XCTAssert(document.blockAt(presentationLocation: 6)! is Paragraph)
 		XCTAssert(document.blockAt(presentationLocation: 7)! is Paragraph)
 		XCTAssert(document.blockAt(presentationLocation: 10)! is Blockquote)
@@ -95,19 +95,19 @@ final class DocumentTests: XCTestCase {
 	}
 
 	func testPresentationStringWithBackingRange() {
-		let document = Document(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
 		XCTAssertEqual("graph.\nOn", document.presentationString(backingRange: NSRange(location: 22, length: 28)))
 	}
 
 	func testPresentationStringWithBlock() {
-		let document = Document(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
 		XCTAssertEqual("One", document.presentationString(block: document.blocks.last!))
 	}
 
 	func testThingsAfterImages() {
-		let document = Document(backingString: "⧙doc-heading⧘Images break things\n⧙image-{\"ci\":\"c2a2e22f-82fc-4658-9fec-d965b3827b04\",\"width\":984,\"height\":794,\"url\":\"https://canvas-files-prod.s3.amazonaws.com/uploads/c2a2e22f-82fc-4658-9fec-d965b3827b04/Screen Shot 2016-06-20 at 10.11.52 AM.png\"}⧘\n## Metrics")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Images break things\n⧙image-{\"ci\":\"c2a2e22f-82fc-4658-9fec-d965b3827b04\",\"width\":984,\"height\":794,\"url\":\"https://canvas-files-prod.s3.amazonaws.com/uploads/c2a2e22f-82fc-4658-9fec-d965b3827b04/Screen Shot 2016-06-20 at 10.11.52 AM.png\"}⧘\n## Metrics")
 
-		let title = document.blocks[0] as! Title
+		let title = document.blocks[0] as! DocumentTitle
 		XCTAssertEqual(NSRange(location: 13, length: 19), title.visibleRange)
 
 		let image = document.blocks[1] as! Image

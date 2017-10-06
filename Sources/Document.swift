@@ -62,7 +62,7 @@ public struct Document {
 	public var title: String? {
 		guard let title = blocks.first as? DocumentTitle else { return nil }
 
-		let titleDocument = Document(backingString: backingString, blocks: [title])
+		let titleDocument = Document(backingString: backingString, presentationString: "", blocks: [title], hiddenRanges: [], blockRanges: [])
 		let renderer = PlainRenderer(document: titleDocument)
 		return renderer.render()
 	}
@@ -72,13 +72,67 @@ public struct Document {
 
 
 	// MARK: - Initializers
-
-	public init(backingString: String = "", blocks: [BlockNode]? = nil) {
+	
+	/* public init(backingString: String, presentationString: String, blocks: [BlockNode], hiddenRanges: [NSRange], blockRanges: [NSRange]) {
 		self.backingString = backingString
-		self.blocks = blocks ?? Parser.parse(backingString)
-		(presentationString, hiddenRanges, blockRanges) = Document.present(backingString: backingString, blocks: self.blocks)
-	}
+		self.presentationString = presentationString
+		self.blocks = blocks
+		self.hiddenRanges = hiddenRanges
+		self.blockRanges = blockRanges
+	} */
 
+	public static func createDocument(backingString: String, blocks: [BlockNode]? = nil)  -> Document {
+		let blocks = blocks ?? Parser.parse(backingString)
+		
+		let text = backingString as NSString
+		
+		var presentationString = ""
+		var hiddenRanges = [NSRange]()
+		var blockRanges = [NSRange]()
+		var location: Int = 0
+		
+		for (i, block) in blocks.enumerated() {
+			let isLast = (i == blocks.count - 1)
+			var blockRange = NSRange(location: location, length: 0)
+			hiddenRanges += block.hiddenRanges
+			
+			if block is Attachable {
+				// Special case for attachments
+				#if os(watchOS)
+					presentationString += "🖼"
+				#else
+					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)!))
+				#endif
+				
+				location += 1
+			} else {
+				// Get the raw text of the line
+				let line = NSMutableString(string: text.substring(with: block.range))
+				
+				// Remove hidden ranges
+				var offset = block.range.location
+				for range in block.hiddenRanges {
+					line.replaceCharacters(in: NSRange(location: range.location - offset, length: range.length), with: "")
+					offset += range.length
+				}
+				
+				presentationString += line as String
+				location += block.range.length - offset + block.range.location
+			}
+			
+			// Add block range.
+			blockRange.length = location - blockRange.location
+			blockRanges.append(blockRange)
+			
+			// New line if we're not at the end. This isn't included in the block's range.
+			if !isLast {
+				presentationString += "\n"
+				location += 1
+			}
+		}
+
+		return Document(backingString: backingString, presentationString: presentationString, blocks: blocks, hiddenRanges: hiddenRanges, blockRanges: blockRanges)
+	}
 
 	// MARK: - Converting Backing Ranges to Presentation Ranges
 
@@ -223,7 +277,7 @@ public struct Document {
 		return blockAt(presentationLocation: UInt(presentationLocation), direction: direction)
 	}
 
-	/// Find a blog at a given location in the presentation string.
+	/// Find a block at a given location in the presentation string.
 	///
 	/// - parameter presentationLocation: Location in the presentation string
 	/// - parameter direction: Specify which block should be returned if the character is a new line.
@@ -332,7 +386,7 @@ public struct Document {
 
 	// MARK: - Private
 
-	fileprivate static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
+	fileprivate func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
 		let text = backingString as NSString
 
 		var presentationString = ""

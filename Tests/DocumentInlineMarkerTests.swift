@@ -15,7 +15,7 @@ import CanvasNative
 
 final class DocumentInlineMarkerTests: XCTestCase {
 	func testParsingInlineMarkers() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
 		XCTAssertEqual("Title\nUn-markered text markered textun-markered text", document.presentationString)
 
 		let paragraph = document.blocks[1] as! Paragraph
@@ -29,27 +29,27 @@ final class DocumentInlineMarkerTests: XCTestCase {
 	}
 
 	func testPresentationRangeWithInlineMarkers() {
-		var document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
+		var document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
 		XCTAssertEqual(NSRange(location: 39, length: 8), document.presentationRange(backingRange: NSRange(location: 107, length: 8)))
 		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(backingRange: NSRange(location: 19, length: 101)))
 		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(blockIndex: 1))
 		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(block: document.blocks[1]))
 		XCTAssertEqual(NSRange(location: 55, length: 2), document.presentationRange(backingRange: NSRange(location: 137, length: 2)))
 
-		document = Document(backingString: "⧙doc-heading⧘Simple comments\nOne ☊co|6BsgU6S6zujYGINemEJwvi☋two☊Ωco|6BsgU6S6zujYGINemEJwvi☋\n⧙code-⧘Th☊co|0QgIo1DL4xqyTJlv2vuZb0☋r☊Ωco|0QgIo1DL4xqyTJlv2vuZb0☋ee")
+		document = Document.createDocument(backingString: "⧙doc-heading⧘Simple comments\nOne ☊co|6BsgU6S6zujYGINemEJwvi☋two☊Ωco|6BsgU6S6zujYGINemEJwvi☋\n⧙code-⧘Th☊co|0QgIo1DL4xqyTJlv2vuZb0☋r☊Ωco|0QgIo1DL4xqyTJlv2vuZb0☋ee")
 		XCTAssertEqual(NSRange(location: 24, length: 5), document.presentationRange(blockIndex: 2))
 
 	}
 
 	func testBackingRangeWithInlineMarkers() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
 		XCTAssertEqual([NSRange(location: 107, length: 8)], document.backingRanges(presentationRange: NSRange(location: 39, length: 8)))
 		XCTAssertEqual([NSRange(location: 19, length: 101)], document.backingRanges(presentationRange: NSRange(location: 6, length: 46)))
 		XCTAssertEqual([NSRange(location: 137, length: 2)], document.backingRanges(presentationRange: NSRange(location: 55, length: 2)))
 	}
 
 	func testDeletingInlineMarkers() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nOne ☊co|3YA3fBfQystAGJj63asokU☋two☊Ωco|3YA3fBfQystAGJj63asokU☋ three")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nOne ☊co|3YA3fBfQystAGJj63asokU☋two☊Ωco|3YA3fBfQystAGJj63asokU☋ three")
 
 		// Insert at beginning, inserts outside marker
 		XCTAssertEqual(NSRange(location: 23, length: 0), document.backingRange(presentationLocation: 10))
@@ -80,7 +80,7 @@ final class DocumentInlineMarkerTests: XCTestCase {
 	}
 
 	func testOverlappingInlineMarkers() {
-		let document = Document(backingString: "⧙doc-heading⧘Test\nHere is a ☊co|0znjeejIniX7iIEkKGMpPS☋com☊co|2SjhCeld7wLFEAyXsYK8eG☋ment☊Ωco|0znjeejIniX7iIEkKGMpPS☋. What☊Ωco|2SjhCeld7wLFEAyXsYK8eG☋ about after?")
+		let document = Document.createDocument(backingString: "⧙doc-heading⧘Test\nHere is a ☊co|0znjeejIniX7iIEkKGMpPS☋com☊co|2SjhCeld7wLFEAyXsYK8eG☋ment☊Ωco|0znjeejIniX7iIEkKGMpPS☋. What☊Ωco|2SjhCeld7wLFEAyXsYK8eG☋ about after?")
 
 		XCTAssertEqual("Test\nHere is a comment. What about after?", document.presentationString)
 

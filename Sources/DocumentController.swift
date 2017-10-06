@@ -34,25 +34,27 @@ public final class DocumentController {
 
 	public weak var delegate: DocumentControllerDelegate?
 
-	public fileprivate(set) var document = Document()
+	public fileprivate(set) var document = Document.createDocument(backingString: "")
 
 
 	// MARK: - Initializers
 
 	public init(backingString: String, delegate: DocumentControllerDelegate? = nil) {
-		self.document = Document(backingString: backingString)
+		self.document = Document.createDocument(backingString: backingString)
 		self.delegate = delegate
 
-		let change = Document().replaceCharactersInRange(NSRange(location: 0, length: 0), withString: document.backingString)
+		let blankDocument = Document.createDocument(backingString:"")
+		let (change, _) = replaceCharacters(inRange: NSRange(location: 0, length: 0), withString: document.backingString, inDocument: blankDocument)
 		processChange(change)
 	}
 
 	public init(document: Document? = nil, delegate: DocumentControllerDelegate? = nil) {
-		self.document = document ?? Document()
+		self.document = document ?? Document.createDocument(backingString: "")
 		self.delegate = delegate
 
 		if let document = document {
-			let change = Document().replaceCharactersInRange(NSRange(location: 0, length: 0), withString: document.backingString)
+			let blankDocument = Document.createDocument(backingString:"")
+			let (change, _) = replaceCharacters(inRange:NSRange(location: 0, length: 0), withString: document.backingString, inDocument: blankDocument)
 			processChange(change)
 		}
 	}
@@ -61,7 +63,7 @@ public final class DocumentController {
 	// MARK: - Changing Text
 
 	public func replaceCharactersInRange(_ range: NSRange, withString string: String) {
-		let change = document.replaceCharactersInRange(range, withString: string)
+		let (change, _) = replaceCharacters(inRange:range, withString: string, inDocument: document)
 		processChange(change)
 	}
 
