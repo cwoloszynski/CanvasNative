@@ -332,7 +332,14 @@ public struct Document {
 		var results = [Node]()
 
 		for node in nodes {
-			if node.range.intersection(backingRange) != nil {
+			let contained: Bool
+			// Include the node that the selection includes, even if it is just the cursor (length == 0)
+			if backingRange.length == 0 {
+				contained = node.range.contains(backingRange.location) || (node.range.location + node.range.length == backingRange.location + backingRange.length)
+			} else {
+				contained = node.range.intersection(backingRange) != nil
+			}
+			if  contained {
 				results.append(node)
 
 				if let node = node as? NodeContainer {
