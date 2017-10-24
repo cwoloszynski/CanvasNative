@@ -82,7 +82,7 @@ public final class DocumentController {
 			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.replacement as String)
 		}
 
-		// Notify about AST changes
+		// Notify about AST changes (AST == Annotations, Styles, and Title)?  
 		if let blockChange = change.blockChange {
 			// Remove
 			for i in blockChange.range.reversed() {
