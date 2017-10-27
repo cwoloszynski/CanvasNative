@@ -150,6 +150,11 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		}
 	}
 
+	// MARK: - Title Text
+	
+	public func titleText(backingString: String) -> String {
+		return  (backingString as NSString).substring(with: textRange)
+	}
 
 	// MARK: - URL
 
