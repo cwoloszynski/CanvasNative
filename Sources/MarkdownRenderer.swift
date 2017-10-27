@@ -130,7 +130,11 @@ public struct MarkdownRenderer: Renderer {
 			if span is Text {
 				output += document.presentationString(backingRange: span.visibleRange)
 			}
-
+			else if let span = span as? Link {
+				let titleText = span.titleText(backingString: document.backingString)
+				guard let urlText = span.URL(backingString: document.backingString)?.absoluteString else { continue }
+				output += "[\(titleText)](\(urlText))"
+			}
 			// Recurse
 			else if let span = span as? NodeContainer {
 				output += render(spans: span.subnodes)
