@@ -99,7 +99,7 @@ public struct MarkdownRenderer: Renderer {
 
 			// Checklist item
 			if let block = block as? ChecklistItem {
-				output += "- [\(block.state.string)] \(render(spans: block.subnodes))"
+				output += "-[\(block.state.string)] \(render(spans: block.subnodes))"
 			}
 
 			// Ordered list
