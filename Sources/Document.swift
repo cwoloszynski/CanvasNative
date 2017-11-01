@@ -66,6 +66,22 @@ public struct Document {
 		let renderer = PlainRenderer(document: titleDocument)
 		return renderer.render()
 	}
+	
+	/// The summary of the document, skip blank lines and find the second non-blank line
+	// (the first non-blank line is the title)
+	public var summary: String? {
+		
+		var summaryLine:String?
+		presentationString.enumerateLines { (line, stop) in
+			if !line.isEmpty {
+				if summaryLine != nil {
+					stop = true
+				}
+				summaryLine = line
+			}
+		}
+		return summaryLine
+	}
 
 	fileprivate let hiddenRanges: [NSRange]
 	fileprivate let blockRanges: [NSRange]
