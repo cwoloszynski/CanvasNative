@@ -98,7 +98,7 @@ public struct ChecklistItem: Listable, Equatable {
 
 		// Prefix
 		let startPrefix = scanner.scanLocation
-		if !scanner.scanString("- [", into: nil) {
+		if !scanner.scanString("-[", into: nil) {
 			return nil
 		}
 
@@ -159,7 +159,7 @@ public struct ChecklistItem: Listable, Equatable {
 	// MARK: - Native
 
 	public static func nativeRepresentation(indentation: Indentation = .zero, state: State = .unchecked) -> String {
-		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "
+		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)-[\(state.string)] "
 	}
 }
 
