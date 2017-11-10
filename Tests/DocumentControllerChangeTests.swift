@@ -53,8 +53,8 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testConvertToChecklist() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙unordered-list-0⧘- [ ]Hi", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 20, length: 0), withString: "checklist-0⧘- [ ] ")
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙unordered-list-0⧘-[ ]Hi", delegate: delegate)
+		controller.replaceCharactersInRange(NSRange(location: 20, length: 0), withString: "checklist-0⧘-[ ] ")
 		controller.replaceCharactersInRange(NSRange(location: 38, length: 22), withString: "")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
@@ -62,7 +62,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testCheckChecklist() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
 		controller.replaceCharactersInRange(NSRange(location: 35, length: 0), withString: "x")
 		controller.replaceCharactersInRange(NSRange(location: 36, length: 1), withString: "")
 
@@ -71,7 +71,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testIndent() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
 
 		let will = expectation(description: "willUpdate")
 		delegate.willUpdate = { will.fulfill() }

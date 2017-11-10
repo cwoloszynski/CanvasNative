@@ -25,7 +25,7 @@ final class ListableTests: XCTestCase {
 	}
 
 	func testMixedPositions() {
-		let blocks = Parser.parse("⧙doc-heading⧘Positions\n⧙ordered-list-0⧘1. One\n⧙ordered-list-0⧘1. Two\n⧙checklist-0⧘- [ ] Hi\n⧙unordered-list-0⧘- Okay")
+		let blocks = Parser.parse("⧙doc-heading⧘Positions\n⧙ordered-list-0⧘1. One\n⧙ordered-list-0⧘1. Two\n⧙checklist-0⧘-[ ] Hi\n⧙unordered-list-0⧘- Okay")
 		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
 
 		let expected: [Position] = [

@@ -12,7 +12,7 @@ import CanvasNative
 final class ChecklistItemTests: XCTestCase {
 	func testUncompleted() {
 		let node = ChecklistItem(
-			string: "⧙checklist-0⧘- [ ] Hello",
+			string: "⧙checklist-0⧘-[ ] Hello",
 			range: NSRange(location: 0, length: 24)
 		)!
 
@@ -27,7 +27,7 @@ final class ChecklistItemTests: XCTestCase {
 
 	func testCompleted() {
 		let node = ChecklistItem(
-			string: "⧙checklist-1⧘- [x] Done",
+			string: "⧙checklist-1⧘-[x] Done",
 			range: NSRange(location: 10, length: 23)
 		)!
 

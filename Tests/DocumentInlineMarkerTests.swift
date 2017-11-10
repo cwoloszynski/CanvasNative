@@ -9,9 +9,9 @@
 import XCTest
 import CanvasNative
 
-// - [ ] New line before a comment
-// - [ ] New line at end of comment
-// - [ ] New line in the middle of a comment
+// -[ ] New line before a comment
+// -[ ] New line at end of comment
+// -[ ] New line in the middle of a comment
 
 final class DocumentInlineMarkerTests: XCTestCase {
 	func testParsingInlineMarkers() {
