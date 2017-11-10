@@ -38,7 +38,7 @@ struct DocumentChange {
 
 
 
-func replaceCharacters(inRange range: NSRange, withString string: String,  inDocument before: Document) -> (DocumentChange, Document) {
+func replaceCharacters(inBackingRange range: NSRange, withString string: String,  inDocument before: Document) -> (DocumentChange, Document) {
 
 	// Calculate new backing string
 	let text = NSMutableString(string: before.backingString)

@@ -44,7 +44,7 @@ public final class DocumentController {
 		self.delegate = delegate
 
 		let blankDocument = Document.createDocument(backingString:"")
-		let (change, _) = replaceCharacters(inRange: NSRange(location: 0, length: 0), withString: document.backingString, inDocument: blankDocument)
+		let (change, _) = replaceCharacters(inBackingRange: NSRange(location: 0, length: 0), withString: document.backingString, inDocument: blankDocument)
 		processChange(change)
 	}
 
@@ -54,7 +54,7 @@ public final class DocumentController {
 
 		if let document = document {
 			let blankDocument = Document.createDocument(backingString:"")
-			let (change, _) = replaceCharacters(inRange:NSRange(location: 0, length: 0), withString: document.backingString, inDocument: blankDocument)
+			let (change, _) = replaceCharacters(inBackingRange:NSRange(location: 0, length: 0), withString: document.backingString, inDocument: blankDocument)
 			processChange(change)
 		}
 	}
@@ -62,8 +62,8 @@ public final class DocumentController {
 
 	// MARK: - Changing Text
 
-	public func replaceCharactersInRange(_ range: NSRange, withString string: String) {
-		let (change, _) = replaceCharacters(inRange:range, withString: string, inDocument: document)
+	public func replaceCharactersInBackingRange(_ range: NSRange, withString string: String) {
+		let (change, _) = replaceCharacters(inBackingRange:range, withString: string, inDocument: document)
 		processChange(change)
 	}
 
