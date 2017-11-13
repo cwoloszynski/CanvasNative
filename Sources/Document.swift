@@ -235,7 +235,7 @@ public struct Document {
 		// Account for all hidden ranges
 		for hiddenRange in hiddenRanges {
 			// Shadow starts after backing range
-			if hiddenRange.location > backingRange.location {
+			if hiddenRange.location >= backingRange.location {
 
 				// Shadow intersects. Expand length.
 				if backingRange.intersectionLength(hiddenRange) > 0 {
