@@ -26,10 +26,10 @@ public struct MarkdownRenderer: Renderer {
 		var lines = [String]()
 
 		for block in document.blocks {
-			lines.append(render(block: block))
+			lines.append(render(block: block).trimmingCharacters(in: .newlines))
 		}
 
-		let output = lines.joined(separator: "\n").trimmingCharacters(in: .newlines)
+		let output = lines.joined(separator: "\n")
 		let bounds = NSRange(location: 0, length: (output as NSString).length)
 		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds, withTemplate: "")
 	}
