@@ -203,12 +203,12 @@ public struct Document {
 		return backingRange
 	}
 
-	public func backingRanges(presentationRange: NSRange) -> [NSRange] {
+	public func backingRanges(presentationRange: NSRange, includePreamble: Bool = false) -> [NSRange] {
 		if presentationRange.length == 0 {
 			return [backingRange(presentationLocation: UInt(presentationRange.location))]
 		}
 
-		let pre = preBackingRange(presentationRange)
+		let pre = preBackingRange(presentationRange, includePreamble: includePreamble)
 
 		var output = NoncontiguousRange(ranges: [pre])
 		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
@@ -229,13 +229,13 @@ public struct Document {
 		return output.ranges
 	}
 
-	fileprivate func preBackingRange(_ presentationRange: NSRange) -> NSRange {
+	fileprivate func preBackingRange(_ presentationRange: NSRange, includePreamble: Bool = false) -> NSRange {
 		var backingRange = presentationRange
 
 		// Account for all hidden ranges
 		for hiddenRange in hiddenRanges {
 			// Shadow starts after backing range
-			if hiddenRange.location >= backingRange.location {
+			if hiddenRange.location > backingRange.location || (includePreamble && (hiddenRange.location == backingRange.location)) {
 
 				// Shadow intersects. Expand length.
 				if backingRange.intersectionLength(hiddenRange) > 0 {
