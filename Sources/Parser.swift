@@ -107,12 +107,10 @@ public struct Parser {
 		for type in spanParseOrder {
 			let regularExpression = type.regularExpression
 			let matches = regularExpression?.matches(in: string, options: [], range: container.textRange)
-			if matches == nil ||  (matches?.isEmpty)! {
-				continue
-			}
+			guard let matchList = matches, !matchList.isEmpty else { continue }
 
 			// Iterate through matches
-			for match in matches! {
+			for match in matchList {
 				// Look for matches that should be skipped because they're contained in other already parsed siblings
 				var skip = false
 				for sibling in subnodes {
