@@ -88,9 +88,9 @@ public struct MarkdownRenderer: Renderer {
 			output = render(spans: block.subnodes)
 		}
 
-		// Title
+		// Title (Leave as basic text, not a heading)
 		else if let block = block as? DocumentTitle {
-			output = "# \(render(spans: block.subnodes))"
+			output = "\(render(spans: block.subnodes))"
 		}
 
 		// Listable
