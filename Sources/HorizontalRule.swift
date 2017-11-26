@@ -38,7 +38,7 @@ public struct HorizontalRule: Attachable, Equatable {
 		}
 
 		self.range = range
-		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
+		nativePrefixRange = NSRange(location: range.location, length: range.length - 1) // Not including the trailing demark character?
 	}
 
 
