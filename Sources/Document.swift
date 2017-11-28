@@ -232,7 +232,8 @@ public struct Document {
 	fileprivate func preBackingRange(_ presentationRange: NSRange, includePreamble: Bool = false) -> NSRange {
 		var backingRange = presentationRange
 
-		// Account for all hidden ranges
+		// Account for all hidden ranges, and compute the effective backing range by incrementing the backingRange forward
+		// over all the hidden ranges
 		for hiddenRange in hiddenRanges {
 			// Shadow starts after backing range
 			if hiddenRange.location > backingRange.location || (includePreamble && (hiddenRange.location == backingRange.location)) {
@@ -250,17 +251,18 @@ public struct Document {
 
 				break
 			}
-
+			// Skip forward over the hidden range
 			backingRange.location += hiddenRange.length
 		}
 
 		let isDeleting = presentationRange.length > 0
 
-		// Adjust for blocks
+		// Adjust for Image blocks
 		for block in blocksIn(backingRange: backingRange) {
-			// Attachables
-			if isDeleting, let attachable = block as? Attachable {
-				backingRange = backingRange.union(attachable.range)
+			// Images should be deleted when the corresponding 'root' section of the document is connected.
+			// Note: we exclude attachments like HorizontalRule elements and other attachments in the future
+			if isDeleting, let image = block as? Image {
+				backingRange = backingRange.union(image.range)
 			}
 		}
 
