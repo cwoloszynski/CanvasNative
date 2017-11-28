@@ -40,10 +40,11 @@ struct DocumentChange {
 
 func replaceCharacters(inBackingRange range: NSRange, withString string: String,  inDocument before: Document) -> (DocumentChange, Document) {
 
+	let backingStringChange = StringChange(range: range, replacement: string as NSString)
 	// Calculate new backing string
 	let text = NSMutableString(string: before.backingString)
 	text.replaceCharacters(in: range, with: string)
-	let backingStringChange = StringChange(range: range, replacement: string as NSString)
+	
 
 	// Create new document
 	let after = Document.createDocument(backingString: String(text)) // Use a copy of the backing String
