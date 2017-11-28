@@ -26,6 +26,10 @@ public struct HorizontalRule: Attachable, Equatable {
 	}
 
 	public var hiddenRanges: [NSRange] {
+		// Need to include not just the prefix but the entire element, so add one to the nativePrefixRange
+		// but then we need to recognize that there is ONE visible (well, sort of visible) character
+		// that supports the drawing of the attachment/image.
+		// So, we end up returning just the nativePrefixRange...
 		return [nativePrefixRange]
 	}
 
