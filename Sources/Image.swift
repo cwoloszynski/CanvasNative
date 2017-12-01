@@ -9,6 +9,12 @@
 import Foundation
 import CoreGraphics
 
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 public struct Image: Attachable, Equatable {
 
 	// MARK: - Properties
@@ -116,6 +122,15 @@ public struct Image: Attachable, Equatable {
 
 	public static func nativeRepresentation(URL: Foundation.URL) -> String {
 		return "\(leadingNativePrefix)image\(trailingNativePrefix)\(URL.absoluteString)"
+	}
+	
+	public var attachmentMarker: String {
+		// Special case for attachments
+		#if os(watchOS)
+			return "🖼"
+		#else
+			return String(Character(UnicodeScalar(NSAttachmentCharacter)!))
+		#endif
 	}
 }
 

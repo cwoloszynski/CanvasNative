@@ -6,7 +6,9 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-public protocol Attachable: NativePrefixable {}
+public protocol Attachable: NativePrefixable {
+	var attachmentMarker: String { get }
+}
 
 extension Attachable {
 	public var visibleRange: NSRange {

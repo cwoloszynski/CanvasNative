@@ -7,6 +7,11 @@
 //
 
 import Foundation
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 private let regularExpression = try! NSRegularExpression(pattern: "^(?:\\s{0,2}(?:(\\s?\\*\\s*?){3,})|(?:(\\s?-\\s*?){3,})|(?:(\\s?_\\s*?){3,})[ \\t]*)$", options: [])
 
@@ -32,6 +37,24 @@ public struct HorizontalRule: Attachable, Equatable {
 		// So, we end up returning just the nativePrefixRange...
 		return [nativePrefixRange]
 	}
+	
+	public var attachmentMarker: String {
+		get {
+			return HorizontalRule.attachmentCharacter
+		}
+	}
+	
+	static private var attachmentCharacter: String {
+		get {
+		// Special case for attachments
+		#if os(watchOS)
+			return "🖼"
+		#else
+			return String(Character(UnicodeScalar(NSAttachmentCharacter)!))
+		#endif
+		}
+	}
+
 
 
 	// MARK: - Initializers
@@ -57,7 +80,7 @@ public struct HorizontalRule: Attachable, Equatable {
 	// MARK: - Native
 
 	public static func nativeRepresentation() -> String {
-		return "\(leadingNativePrefix)horizontal-rule\(trailingNativePrefix)"
+		return "\(leadingNativePrefix)horizontal-rule\(trailingNativePrefix)\(HorizontalRule.attachmentCharacter)"
 	}
 }
 
