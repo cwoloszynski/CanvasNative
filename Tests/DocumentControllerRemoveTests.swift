@@ -20,7 +20,7 @@ final class DocumentControllerRemoveTests: XCTestCase {
 
 	func testJoinBlock() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 1), withString: "")
+		controller.replaceCharactersInBackingRange(NSRange(location: 22, length: 1), withString: "")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -28,7 +28,7 @@ final class DocumentControllerRemoveTests: XCTestCase {
 
 	func testMultipleJoin() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 5), withString: "")
+		controller.replaceCharactersInBackingRange(NSRange(location: 22, length: 5), withString: "")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -37,13 +37,13 @@ final class DocumentControllerRemoveTests: XCTestCase {
 	func testMultipleRemoveBlock() {
 		var delegate = TestDocumentControllerDelegate()
 		var controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
+		controller.replaceCharactersInBackingRange(NSRange(location: 22, length: 10), withString: "")
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
 
 		delegate = TestDocumentControllerDelegate()
 		controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 23, length: 10), withString: "")
+		controller.replaceCharactersInBackingRange(NSRange(location: 23, length: 10), withString: "")
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
 	}

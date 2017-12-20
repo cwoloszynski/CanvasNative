@@ -43,7 +43,7 @@ final class DocumentControllerInsertTests: XCTestCase {
 		let did = expectation(description: "controllerDidUpdateNodes")
 		delegate.didUpdate = { did.fulfill() }
 
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nParagraph")
+		controller.replaceCharactersInBackingRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nParagraph")
 		waitForExpectations(timeout: 0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)

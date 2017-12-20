@@ -37,7 +37,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 		let did = expectation(description: "didUpdate")
 		delegate.didUpdate = { did.fulfill() }
 
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
+		controller.replaceCharactersInBackingRange(NSRange(location: 22, length: 0), withString: "!")
 		waitForExpectations(timeout: 0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
@@ -46,7 +46,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 
 	func testMultipleInsertRemove() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 19, length: 18), withString: "Hello\nWorld")
+		controller.replaceCharactersInBackingRange(NSRange(location: 19, length: 18), withString: "Hello\nWorld")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -54,8 +54,8 @@ final class DocumentControllerChangeTests: XCTestCase {
 
 	func testConvertToChecklist() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙unordered-list-0⧘-[ ]Hi", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 20, length: 0), withString: "checklist-0⧘-[ ] ")
-		controller.replaceCharactersInRange(NSRange(location: 38, length: 22), withString: "")
+		controller.replaceCharactersInBackingRange(NSRange(location: 20, length: 0), withString: "checklist-0⧘-[ ] ")
+		controller.replaceCharactersInBackingRange(NSRange(location: 38, length: 22), withString: "")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -63,8 +63,8 @@ final class DocumentControllerChangeTests: XCTestCase {
 
 	func testCheckChecklist() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
-		controller.replaceCharactersInRange(NSRange(location: 35, length: 0), withString: "x")
-		controller.replaceCharactersInRange(NSRange(location: 36, length: 1), withString: "")
+		controller.replaceCharactersInBackingRange(NSRange(location: 35, length: 0), withString: "x")
+		controller.replaceCharactersInBackingRange(NSRange(location: 36, length: 1), withString: "")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -89,7 +89,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 		let did = expectation(description: "didUpdate")
 		delegate.didUpdate = { did.fulfill() }
 
-		controller.replaceCharactersInRange(NSRange(location: 30, length: 1), withString: "1")
+		controller.replaceCharactersInBackingRange(NSRange(location: 30, length: 1), withString: "1")
 		waitForExpectations(timeout: 0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)

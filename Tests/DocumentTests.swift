@@ -9,6 +9,17 @@
 import XCTest
 import CanvasNative
 
+// From: https://www.raizlabs.com/dev/2017/02/xctest-optional-unwrapping/
+struct UnexpectedNilError: Error {}
+func AssertNotNilAndUnwrap<T>(_ variable: T?, message: String = "Unexpected nil variable", file: StaticString = #file, line: UInt = #line) throws -> T {
+	guard let variable = variable else {
+		XCTFail(message, file: file, line: line)
+		throw UnexpectedNilError()
+	}
+	return variable
+}
+
+
 final class DocumentTests: XCTestCase {
 	func testTitle() {
 		var document = Document.createDocument(backingString: "⧙doc-heading⧘Title\nHello")
@@ -104,10 +115,10 @@ final class DocumentTests: XCTestCase {
 		XCTAssertEqual("One", document.presentationString(block: document.blocks.last!))
 	}
 
-	func testThingsAfterImages() {
+	func testThingsAfterImages() throws {
 		let document = Document.createDocument(backingString: "⧙doc-heading⧘Images break things\n⧙image-{\"ci\":\"c2a2e22f-82fc-4658-9fec-d965b3827b04\",\"width\":984,\"height\":794,\"url\":\"https://canvas-files-prod.s3.amazonaws.com/uploads/c2a2e22f-82fc-4658-9fec-d965b3827b04/Screen Shot 2016-06-20 at 10.11.52 AM.png\"}⧘\n## Metrics")
 
-		let title = document.blocks[0] as! DocumentTitle
+		let title = try AssertNotNilAndUnwrap(document.blocks[0] as? DocumentTitle)
 		XCTAssertEqual(NSRange(location: 13, length: 19), title.visibleRange)
 
 		let image = document.blocks[1] as! Image
