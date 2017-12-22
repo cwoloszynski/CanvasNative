@@ -19,7 +19,7 @@ final class DocumentControllerReliabilityTests: XCTestCase {
 	// MARK: - Tests
 
 	func testReliabilityInsertMidParagraph() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading-fake-uuid⧘Title\nOne\nTwo", delegate: delegate)
 		controller.replaceCharactersInBackingRange(NSRange(location: 21, length: 0), withString: "1")
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)

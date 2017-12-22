@@ -19,7 +19,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	// MARK: - Tests
 
 	func testChange() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading-fake-uuid⧘Title\nOne\nTwo", delegate: delegate)
 
 		let will = expectation(description: "willUpdate")
 		delegate.willUpdate = { will.fulfill() }
@@ -45,7 +45,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testMultipleInsertRemove() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading-fake-uuid⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
 		controller.replaceCharactersInBackingRange(NSRange(location: 19, length: 18), withString: "Hello\nWorld")
 
 		XCTAssertEqual(delegate.presentationString as String, controller.document.presentationString)
@@ -53,7 +53,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testConvertToChecklist() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙unordered-list-0⧘-[ ]Hi", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading-fake-uuid⧘Title\n⧙unordered-list-0⧘-[ ]Hi", delegate: delegate)
 		controller.replaceCharactersInBackingRange(NSRange(location: 20, length: 0), withString: "checklist-0⧘-[ ] ")
 		controller.replaceCharactersInBackingRange(NSRange(location: 38, length: 22), withString: "")
 
@@ -62,7 +62,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testCheckChecklist() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading-fake-uuid⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
 		controller.replaceCharactersInBackingRange(NSRange(location: 35, length: 0), withString: "x")
 		controller.replaceCharactersInBackingRange(NSRange(location: 36, length: 1), withString: "")
 
@@ -71,7 +71,7 @@ final class DocumentControllerChangeTests: XCTestCase {
 	}
 
 	func testIndent() {
-		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
+		let controller = DocumentController(backingString: "⧙doc-heading-fake-uuid⧘Title\n⧙checklist-0⧘-[ ] Hi", delegate: delegate)
 
 		let will = expectation(description: "willUpdate")
 		delegate.willUpdate = { will.fulfill() }

@@ -40,7 +40,7 @@ final class CodeBlockTestes: XCTestCase {
 	}
 
 	func testLineNumbers() {
-		let blocks = Parser.parse("⧙doc-heading⧘Code\n⧙code⧘hi\n⧙code-swift⧘yay\n⧙code-swift⧘ok\n⧙code-ruby⧘gem\n⧙code-ruby⧘matz\n⧙code-ruby⧘done")
+		let blocks = Parser.parse("⧙doc-heading-fake-uuid⧘Code\n⧙code⧘hi\n⧙code-swift⧘yay\n⧙code-swift⧘ok\n⧙code-ruby⧘gem\n⧙code-ruby⧘matz\n⧙code-ruby⧘done")
 		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
 
 		let expected: [Position] = [
