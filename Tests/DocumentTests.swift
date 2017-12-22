@@ -82,7 +82,7 @@ final class DocumentTests: XCTestCase {
 		XCTAssertEqual("Title\nOne\nTwo\nThree", document.presentationString)
 
 		XCTAssertEqual([NSRange(location: 48, length: 2)], document.backingRanges(presentationRange: NSRange(location: 11, length: 2)))
-		XCTAssertEqual([NSRange(location: 31, length: 21)], document.backingRanges(presentationRange: NSRange(location: 8, length: 7)))
+		XCTAssertEqual([NSRange(location: 31, length: 27)], document.backingRanges(presentationRange: NSRange(location: 8, length: 7)))
 	}
 
 	func testEntirePresentationRange() {
