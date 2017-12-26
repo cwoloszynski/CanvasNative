@@ -112,15 +112,10 @@ public struct Document {
 			var blockRange = NSRange(location: location, length: 0)
 			hiddenRanges += block.hiddenRanges
 			
-			if block is Attachable {
-				// Special case for attachments
-				#if os(watchOS)
-					presentationString += "🖼"
-				#else
-					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)!))
-				#endif
-				
-				location += 1
+			if let attachmentBlock = block as? Attachable {
+				let marker = attachmentBlock.attachmentMarker
+				presentationString += marker
+				location += marker.utf16.count
 			} else {
 				// Get the raw text of the line
 				let line = NSMutableString(string: text.substring(with: block.range))
@@ -183,7 +178,10 @@ public struct Document {
 
 	// MARK: - Converting Presentation Ranges to Backing Ranges
 
+	
+	// Convert a single point (location, not a range) into a selection.
 	public func backingRange(presentationLocation: UInt) -> NSRange {
+		
 		var backingRange = preBackingRange(NSRange(location: Int(presentationLocation), length: 0))
 		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
 
@@ -203,12 +201,12 @@ public struct Document {
 		return backingRange
 	}
 
-	public func backingRanges(presentationRange: NSRange, includePreamble: Bool = false) -> [NSRange] {
+	public func backingRanges(presentationRange: NSRange) -> [NSRange] {
 		if presentationRange.length == 0 {
 			return [backingRange(presentationLocation: UInt(presentationRange.location))]
 		}
 
-		let pre = preBackingRange(presentationRange, includePreamble: includePreamble)
+		let pre = preBackingRange(presentationRange)
 
 		var output = NoncontiguousRange(ranges: [pre])
 		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
@@ -228,40 +226,49 @@ public struct Document {
 
 		return output.ranges
 	}
+	
+	/*
+     * This function computes the backing range of a presentation range.
+	 * This backingRange should include the preamble (non-visible) part of the backingString.
+	 *
+	 * The location of the backingRange will be the backed up to the start of the enclosing hidden text if we
+	 * butt up against it.  The range will cover any backup.
+	 *
+	 * I believe that the caller of this function should modify their use of this depending if they are selecting something or just inserting something or just deleting something.
+	 */
 
-	fileprivate func preBackingRange(_ presentationRange: NSRange, includePreamble: Bool = false) -> NSRange {
+	fileprivate func preBackingRange(_ presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
-
-		// Account for all hidden ranges, and compute the effective backing range by incrementing the backingRange forward
-		// over all the hidden ranges
+		
+		// Account for all hidden ranges preceeding this presentation range
+		// Compute the effective backing range by incrementing the backingRange forward
 		for hiddenRange in hiddenRanges {
-			// Shadow starts after backing range
-			if hiddenRange.location > backingRange.location || (includePreamble && (hiddenRange.location == backingRange.location)) {
-
-				// Shadow intersects. Expand length.
-				if backingRange.intersectionLength(hiddenRange) > 0 {
-					backingRange.length += hiddenRange.length
-					continue
-				}
-
-				// If the shadow starts directly after the backing range, expand to include it.
-				if hiddenRange.location == backingRange.max {
-					backingRange.length += hiddenRange.length
-				}
-
-				break
+			
+			// Hidden range starts before backing range so we need to adjust the backingRange to skip over it
+			if hiddenRange.location < backingRange.location {
+				// Skip forward over the entire hidden range
+				backingRange.location += hiddenRange.length
+				continue
 			}
-			// Skip forward over the hidden range
-			backingRange.location += hiddenRange.length
+			
+			// Shadow of hidden text intersects. Expand length (not location).
+			// Note: we simpply care of the hidden range is within the backingRange
+			// If it is, all of it applies to the expanded backingRange.
+			//
+			if hiddenRange.location <= backingRange.max {
+				backingRange.length += hiddenRange.length
+			}
+			
+			// NOPE, the rest of this comment is not true:  At this point, all other hidden ranges are after this presentation range so we can skip them
+			// DONT TRY TO EXIT THIS LOOP EARLY:  We might have more than one hidden range that need to be accumulated, so we need to walk through all of them
+			// -- NOPE: break
 		}
-
-		let isDeleting = presentationRange.length > 0
 
 		// Adjust for Image blocks
 		for block in blocksIn(backingRange: backingRange) {
-			// Images should be deleted when the corresponding 'root' section of the document is connected.
+			// Images should be included when the corresponding 'root' section of the document is connected.
 			// Note: we exclude attachments like HorizontalRule elements and other attachments in the future
-			if isDeleting, let image = block as? Image {
+			if let image = block as? Image {
 				backingRange = backingRange.union(image.range)
 			}
 		}
