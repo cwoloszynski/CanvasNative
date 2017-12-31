@@ -38,9 +38,9 @@ struct DocumentChange {
 
 
 
-func replaceCharacters(inBackingRange range: NSRange, withString string: String,  inDocument before: Document) -> (DocumentChange, Document) {
+func computeChangeReplacingCharacters(inBackingRange range: NSRange, withString string: String,  inDocument before: Document) -> DocumentChange {
 
-	let backingStringChange = StringChange(range: range, replacement: string as NSString)
+	let backingStringChange = StringChange(range: range, replacement: String(string) as NSString) // Make a copy of the string
 	// Calculate new backing string
 	let text = NSMutableString(string: before.backingString)
 	text.replaceCharacters(in: range, with: string)
@@ -56,7 +56,7 @@ func replaceCharacters(inBackingRange range: NSRange, withString string: String,
 			return false
 		}
 
-		// Check positionable
+		// Check positionable (which includes unordered list items)
 		if let before = beforeBlock as? Positionable, let after = afterBlock as? Positionable, before.position != after.position {
 			return false
 		}
@@ -85,6 +85,6 @@ func replaceCharacters(inBackingRange range: NSRange, withString string: String,
 		backingStringChange: backingStringChange,
 		presentationStringChange: presentationStringChange
 	)
-	return (change, after)
+	return change
 }
 
