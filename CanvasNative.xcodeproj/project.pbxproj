@@ -1455,6 +1455,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1509,6 +1510,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1578,7 +1580,6 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = 936EKNL558;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
@@ -1592,7 +1593,6 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = 936EKNL558;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
