@@ -44,7 +44,7 @@ public struct HorizontalRule: Attachable, Equatable {
 		}
 	}
 	
-	static private var attachmentCharacter: String {
+	static public var attachmentCharacter: String {
 		get {
 		// Special case for attachments
 		#if os(watchOS)
