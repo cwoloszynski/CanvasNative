@@ -40,18 +40,18 @@ public struct HorizontalRule: Attachable, Equatable {
 	
 	public var attachmentMarker: String {
 		get {
-			return HorizontalRule.attachmentCharacter
+			return String(HorizontalRule.attachmentCharacter)
 		}
 	}
 	
-	static public var attachmentCharacter: String {
+	static public var attachmentCharacter: Character {
 		get {
 		// Special case for attachments
-		#if os(watchOS)
-			return "🖼"
-		#else
-			return String(Character(UnicodeScalar(NSAttachmentCharacter)!))
-		#endif
+		// #if os(watchOS)
+		//	 return "🖼"
+		// #else
+			return Character(UnicodeScalar(NSAttachmentCharacter)!)
+		// #endif
 		}
 	}
 
